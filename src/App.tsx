@@ -1,13 +1,17 @@
 import { SidePanel } from "./components/SidePanel/SidePanel";
+import "./index.css";
 
 function App() {
   return (
     <>
+      <button>Open Sidepanel</button>
       <SidePanel
+        position="right"
         isOpen={true}
-        title="Sidepanel title"
-        description="Sidepanel description"
+        title="Add Values"
         submitButtonText="Submit"
+        hasFooter={false}
+        width={400}
       >
         <h1>test</h1>
       </SidePanel>
