@@ -6,6 +6,7 @@ type ButtonProps = {
   onClick?: () => void;
   width: number;
   disabled?: boolean;
+  className?: string;
 };
 
 export const Button = ({
@@ -14,6 +15,7 @@ export const Button = ({
   onClick,
   width,
   disabled,
+  className,
 }: ButtonProps) => {
   return (
     <StyledButton
@@ -21,6 +23,7 @@ export const Button = ({
       color={color}
       onClick={onClick}
       disabled={disabled}
+      className={className}
     >
       {text}
     </StyledButton>

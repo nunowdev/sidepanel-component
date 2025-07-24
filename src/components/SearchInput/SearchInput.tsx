@@ -1,13 +1,14 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 import { SearchInputWrapper } from "./styles";
+import { FaXmark } from "react-icons/fa6";
 
 interface SearchInputProps {
   inputWidth?: number;
   placeholder?: string;
+  className?: string;
   value: string;
   onInputChange: (value: string) => void;
-  onClear: () => void;
 }
 
 export const SearchInput: React.FC<SearchInputProps> = ({
@@ -15,7 +16,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   placeholder = "Search...",
   value,
   onInputChange,
-  onClear,
+  className,
 }) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
@@ -24,17 +25,10 @@ export const SearchInput: React.FC<SearchInputProps> = ({
 
   const handleClearInput = () => {
     onInputChange("");
-    onClear();
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === "Enter") {
-      handleClearInput();
-    }
   };
 
   return (
-    <SearchInputWrapper inputWidth={inputWidth}>
+    <SearchInputWrapper inputWidth={inputWidth} className={className}>
       <FaSearch color="pink" />
       <input
         type="text"
@@ -45,14 +39,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
       />
       <span className="spacer" role="presentation"></span>
       {value && (
-        <p
-          onClick={handleClearInput}
-          onKeyDown={handleKeyDown}
-          role="button"
-          tabIndex={0}
-        >
-          ✕
-        </p>
+        <FaXmark onClick={handleClearInput} color="pink" cursor={"pointer"} />
       )}
     </SearchInputWrapper>
   );
