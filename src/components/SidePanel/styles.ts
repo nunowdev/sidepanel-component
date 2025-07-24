@@ -22,6 +22,7 @@ const Sidepanel = styled.div<SidepanelProps>`
   background-color: rgb(29, 29, 29);
   position: absolute;
   top: 0;
+  padding: 32px 24px;
   left: ${(props) => (props.position === "left" ? "0" : "auto")};
   right: ${(props) => (props.position === "right" ? "0" : "auto")};
 
@@ -42,4 +43,22 @@ const Sidepanel = styled.div<SidepanelProps>`
   }
 `;
 
-export { Overlay, Sidepanel };
+const SidepanelHeader = styled.div`
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-bottom: 16px;
+  color: white;
+  h1 {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 32px;
+  }
+  h2 {
+    font-family: "Intel One Mono", monospace;
+    font-size: 16px;
+    margin-top: 8px;
+    color: pink;
+  }
+`;
+
+export { Overlay, Sidepanel, SidepanelHeader };

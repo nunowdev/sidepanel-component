@@ -1,19 +1,43 @@
+import { useState } from "react";
 import { SidePanel } from "./components/SidePanel/SidePanel";
+import { SearchInput } from "./components/SearchInput/SearchInput";
+import { useSidePanel } from "./hooks/useSidePanel";
 import "./index.css";
+import { Button } from "./components/Button/Button";
 
 function App() {
+  const [searchValue, setSearchValue] = useState("");
+  const {
+    isOpen: isSidePanelOpen,
+    openSidePanel,
+    closeSidePanel,
+  } = useSidePanel();
+
   return (
     <>
-      <button>Open Sidepanel</button>
+      <button onClick={openSidePanel}>Open Side Panel </button>
       <SidePanel
         position="right"
-        isOpen={true}
+        isOpen={isSidePanelOpen}
         title="Add Values"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         submitButtonText="Submit"
-        hasFooter={false}
+        hasFooter={true}
         width={400}
+        onClose={closeSidePanel}
       >
-        <h1>test</h1>
+        <SearchInput
+          value={searchValue}
+          onInputChange={setSearchValue}
+          placeholder="Insert value name..."
+          inputWidth={350}
+        />
+        <Button
+          text="Add Value"
+          color="primary"
+          width={120}
+          onClick={() => {}}
+        />
       </SidePanel>
     </>
   );
