@@ -1,11 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Overlay, Sidepanel, SidepanelHeader } from "./styles";
+import {
+  Overlay,
+  Sidepanel,
+  SidepanelBody,
+  SidepanelFooter,
+  SidepanelHeader,
+} from "./styles";
+import { Button } from "../Button/Button";
 
 type SidePanelProps = {
   title: string;
   description?: string;
-  submitButtonText?: string;
+  submitButtonText: string;
   isOpen: boolean;
   onSubmit?: () => void;
   onClose?: () => void;
@@ -41,15 +48,23 @@ export const SidePanel = ({
           <h2>{description}</h2>
         </SidepanelHeader>
 
-        <div className="sidepanel-body">{children}</div>
+        <SidepanelBody>{children}</SidepanelBody>
 
         {hasFooter && (
-          <div className="sidepanel-footer">
-            <button onClick={onClose}>Cancel</button>
-            {submitButtonText && (
-              <button onClick={onSubmit}>{submitButtonText}</button>
-            )}
-          </div>
+          <SidepanelFooter>
+            <Button
+              text="Cancel"
+              color="secondary"
+              width={120}
+              onClick={onClose}
+            />
+            <Button
+              text={submitButtonText}
+              color="primary"
+              width={120}
+              onClick={onSubmit}
+            />
+          </SidepanelFooter>
         )}
       </Sidepanel>
     </Overlay>,

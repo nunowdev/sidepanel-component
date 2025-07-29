@@ -23,6 +23,8 @@ const Sidepanel = styled.div<SidepanelProps>`
   position: absolute;
   top: 0;
   padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
   left: ${(props) => (props.position === "left" ? "0" : "auto")};
   right: ${(props) => (props.position === "right" ? "0" : "auto")};
 
@@ -61,4 +63,19 @@ const SidepanelHeader = styled.div`
   }
 `;
 
-export { Overlay, Sidepanel, SidepanelHeader };
+const SidepanelBody = styled.div`
+  width: 100%;
+  height: auto;
+  flex: 1;
+`;
+
+const SidepanelFooter = styled.div`
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+  gap: 12px;
+`;
+
+export { Overlay, Sidepanel, SidepanelHeader, SidepanelBody, SidepanelFooter };

@@ -22,6 +22,7 @@ const SearchInputWrapper = styled.div<SearchInputProps>`
     padding-left: 12px;
     font-size: 16px;
     color: pink;
+    font-family: "IBM Plex Mono", monospace;
 
     &::placeholder {
       color: #888888;

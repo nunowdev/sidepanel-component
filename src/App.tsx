@@ -5,6 +5,7 @@ import { useSidePanel } from "./hooks/useSidePanel";
 import "./index.css";
 import "./App.css";
 import { Button } from "./components/Button/Button";
+import { AnimatedListItem } from "./components/AnimatedListItem/AnimatedListItem";
 
 function App() {
   const [searchValue, setSearchValue] = useState("");
@@ -16,16 +17,22 @@ function App() {
   } = useSidePanel();
 
   function addValueToList() {
+    if (!searchValue || values.includes(searchValue)) return;
     setValues([...values, searchValue]);
+    setSearchValue("");
   }
 
-  function clearValues() {
-    setValues([]);
+  function removeValueFromList(valueToRemove: string) {
+    setValues((prev) => prev.filter((val) => val !== valueToRemove));
   }
+
+  // TODO: Add scale animation to icons
+  // TODO: Handle value list scroll
+  // TODO: Add value when clicking enter on input
 
   return (
     <>
-      <button onClick={openSidePanel}>Open Side Panel </button>
+      <button onClick={openSidePanel}>Open Side Panel</button>
       <SidePanel
         position="right"
         isOpen={isSidePanelOpen}
@@ -36,7 +43,7 @@ function App() {
         width={400}
         onClose={() => {
           closeSidePanel();
-          clearValues();
+          setValues([]);
         }}
       >
         <SearchInput
@@ -50,11 +57,18 @@ function App() {
           text="Add Value"
           color="primary"
           width={120}
+          disabled={!searchValue || values.includes(searchValue)}
           onClick={addValueToList}
         />
-        {values.map((value) => (
-          <p>{value}</p>
-        ))}
+        <div className="sidepanel-value-list">
+          {values.map((value) => (
+            <AnimatedListItem
+              key={value}
+              value={value}
+              onRemove={() => removeValueFromList(value)}
+            />
+          ))}
+        </div>
       </SidePanel>
     </>
   );

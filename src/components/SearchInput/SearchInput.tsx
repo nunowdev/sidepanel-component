@@ -29,7 +29,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
 
   return (
     <SearchInputWrapper inputWidth={inputWidth} className={className}>
-      <FaSearch color="pink" />
+      <FaSearch color="pink" className="icon-animation" />
       <input
         type="text"
         value={value}

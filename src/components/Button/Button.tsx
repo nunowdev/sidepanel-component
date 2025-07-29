@@ -23,7 +23,7 @@ export const Button = ({
       color={color}
       onClick={onClick}
       disabled={disabled}
-      className={className}
+      className={`${className} ${disabled && "disabled"}`}
     >
       {text}
     </StyledButton>
