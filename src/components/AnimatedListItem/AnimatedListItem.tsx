@@ -1,13 +1,14 @@
 import { useEffect, useRef } from "react";
 import { FaTrash } from "react-icons/fa";
 import gsap from "gsap";
+import { ListItem } from "./styles";
 
 type Props = {
-  value: string;
+  itemName: string;
   onRemove: () => void;
 };
 
-export const AnimatedListItem = ({ value, onRemove }: Props) => {
+export const AnimatedListItem = ({ itemName, onRemove }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const handleAdd = () => {
@@ -38,9 +39,14 @@ export const AnimatedListItem = ({ value, onRemove }: Props) => {
   }, []);
 
   return (
-    <div className="sidepanel-value-wrapper" ref={ref}>
-      <div className="sidepanel-value">{value}</div>
-      <FaTrash cursor="pointer" color="pink" onClick={handleRemove} />
-    </div>
+    <ListItem ref={ref}>
+      <div className="item">{itemName}</div>
+      <FaTrash
+        cursor="pointer"
+        color="pink"
+        onClick={handleRemove}
+        className="animated-icon"
+      />
+    </ListItem>
   );
 };

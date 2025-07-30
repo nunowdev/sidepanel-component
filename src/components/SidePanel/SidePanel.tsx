@@ -13,6 +13,7 @@ type SidePanelProps = {
   title: string;
   description?: string;
   submitButtonText: string;
+  className?: string;
   isOpen: boolean;
   onSubmit?: () => void;
   onClose?: () => void;
@@ -26,6 +27,7 @@ export const SidePanel = ({
   title,
   description,
   submitButtonText,
+  className,
   isOpen,
   onSubmit,
   onClose,
@@ -35,10 +37,10 @@ export const SidePanel = ({
   position,
 }: SidePanelProps) => {
   if (!isOpen) return null;
-  console.log(position);
   return ReactDOM.createPortal(
     <Overlay>
       <Sidepanel
+        className={className}
         position={position}
         width={width}
         onClick={(e) => e.stopPropagation()}

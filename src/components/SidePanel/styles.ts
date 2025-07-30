@@ -1,10 +1,5 @@
 import { styled } from "@linaria/react";
 
-type SidepanelProps = {
-  position: "right" | "left";
-  width: number;
-};
-
 const Overlay = styled.div`
   width: 100%;
   height: 100vh;
@@ -13,9 +8,22 @@ const Overlay = styled.div`
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.8);
+  animation: fadeIn 0.3s ease;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
-const Sidepanel = styled.div<SidepanelProps>`
+const Sidepanel = styled.div<{
+  position: "right" | "left";
+  width: number;
+}>`
   width: ${(props) => props.width}px;
   border-radius: 10px;
   height: 100%;
@@ -27,6 +35,20 @@ const Sidepanel = styled.div<SidepanelProps>`
   flex-direction: column;
   left: ${(props) => (props.position === "left" ? "0" : "auto")};
   right: ${(props) => (props.position === "right" ? "0" : "auto")};
+  animation: slideIn 0.4s ease-in;
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(
+        ${(props) => (props.position === "right" ? "100%" : "-100%")}
+      );
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
 
   &::before {
     content: "";
@@ -51,10 +73,12 @@ const SidepanelHeader = styled.div`
   flex-direction: column;
   margin-bottom: 16px;
   color: white;
+
   h1 {
     font-family: "IBM Plex Mono", monospace;
     font-size: 32px;
   }
+
   h2 {
     font-family: "Intel One Mono", monospace;
     font-size: 16px;
@@ -64,9 +88,11 @@ const SidepanelHeader = styled.div`
 `;
 
 const SidepanelBody = styled.div`
-  width: 100%;
-  height: auto;
   flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 `;
 
 const SidepanelFooter = styled.div`

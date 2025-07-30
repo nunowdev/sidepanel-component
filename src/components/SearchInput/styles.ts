@@ -42,6 +42,14 @@ const SearchInputWrapper = styled.div<SearchInputProps>`
       color: white;
     }
   }
+
+  .animated-icon {
+    transition: all 350ms ease;
+  }
+
+  .animated-icon:hover {
+    transform: scale(1.2);
+  }
 `;
 
 export { SearchInputWrapper };

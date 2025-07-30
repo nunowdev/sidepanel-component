@@ -29,7 +29,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
 
   return (
     <SearchInputWrapper inputWidth={inputWidth} className={className}>
-      <FaSearch color="pink" className="icon-animation" />
+      <FaSearch color="pink" />
       <input
         type="text"
         value={value}
@@ -39,7 +39,12 @@ export const SearchInput: React.FC<SearchInputProps> = ({
       />
       <span className="spacer" role="presentation"></span>
       {value && (
-        <FaXmark onClick={handleClearInput} color="pink" cursor={"pointer"} />
+        <FaXmark
+          onClick={handleClearInput}
+          color="pink"
+          cursor={"pointer"}
+          className="animated-icon"
+        />
       )}
     </SearchInputWrapper>
   );
